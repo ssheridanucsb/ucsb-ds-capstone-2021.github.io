@@ -470,6 +470,7 @@
 <div class="section" id="decision-threshold-tuning">
 <h2>Decision Threshold Tuning<a class="headerlink" href="#decision-threshold-tuning" title="Permalink to this headline">¶</a></h2>
 <p><img alt="image1" src="https://user-images.githubusercontent.com/43657731/111241726-f1149000-85ba-11eb-97b9-c71dc8172a1c.png" /></p>
+<p>A probability threshold of ~0.65 would optimize both recall and precision, however we opted to use a threshold of 0.2 since recall is more important to us. A threshold of 0.2 maximizes recall without sacrificing too much precision and accuracy</p>
 <div class="section" id="hyperparameter-tuning">
 <h3>Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">¶</a></h3>
 <p>Optuna is a python package that runs trials by case on a designated objective function. For hyperparameter tuning, the objective function consists of ranges of parameters tested and tests for best parameters values in that range. Optuna was found to be more efficient and faster than GridSearchCVParameter output is also more precise given its range, not from manually inputted values. For the above plot, over the number of trials, the search objective value becomes closer to 1 or -1,  indicating strong model correlation to the dataset.</p>

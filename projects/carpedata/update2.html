@@ -523,25 +523,25 @@
 <div class="section" id="model-progress">
 <h2>Model Progress<a class="headerlink" href="#model-progress" title="Permalink to this headline">¶</a></h2>
 <p>Since our last update we have experimented with a variety of new models. We implemented gradient-boosted-trees using LightGBM and tuned our models hyperparameters using Optuna. Gradient-boosted trees are better for highly unbalanced data like ours where the minority class (positive labels–the ones containing criminal record information) hold greater value than the majority (negative) class and we care more about false negatives than false positives. After tuning we were able to achieve Recall of 96%. A major improvement over our original random forest model.</p>
-<p><img alt="image2" src="https://user-images.githubusercontent.com/43657731/111241637-c7f3ff80-85ba-11eb-846f-d41156020231.png" /></p>
+<p><img alt="lgbm" src="../../_images/lgbm.png" /></p>
 <p>From the confusion matrix, we see that the bottom left value (the false negatives) is less than that from the Random Forest model (which had 301 false negatives).</p>
 <p>In order to interpret the model, we plotted variable importance using lightGBM’s feature_importances method. We found the 25 most important features in our model.</p>
-<p><img alt="image4" src="https://user-images.githubusercontent.com/43657731/111241691-dd692980-85ba-11eb-868d-e0ddcf0c3df6.png" /></p>
+<p><img alt="importantvariables" src="../../_images/importantvariables.png" /></p>
 <p>As shown in the plot, the words ‘arrested’, ‘charged’, ‘police’ and ‘crime’ are the most important and are words we would associate with criminal records.</p>
 </div>
 <div class="section" id="decision-threshold-tuning">
 <h2>Decision Threshold Tuning<a class="headerlink" href="#decision-threshold-tuning" title="Permalink to this headline">¶</a></h2>
-<p><img alt="image1" src="https://user-images.githubusercontent.com/43657731/111241726-f1149000-85ba-11eb-97b9-c71dc8172a1c.png" /></p>
+<p><img alt="pr" src="../../_images/precisionrecall.png" /></p>
 <p>A probability threshold of ~0.65 would optimize both recall and precision, however we opted to use a threshold of 0.2 since recall is more important to us. A threshold of 0.2 maximizes recall without sacrificing too much precision and accuracy</p>
 <div class="section" id="hyperparameter-tuning">
 <h3>Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">¶</a></h3>
 <p>Optuna is a python package that runs trials by case on a designated objective function. For hyperparameter tuning, the objective function consists of ranges of parameters tested and tests for best parameters values in that range. Optuna was found to be more efficient and faster than GridSearchCVParameter output is also more precise given its range, not from manually inputted values. For the above plot, over the number of trials, the search objective value becomes closer to 1 or -1,  indicating strong model correlation to the dataset.</p>
-<p><img alt="image5" src="https://user-images.githubusercontent.com/43657731/111241943-641e0680-85bb-11eb-87f2-84083acd8e8d.png" /></p>
+<p><img alt="optuna" src="../../_images/optuna.png" /></p>
 </div>
 </div>
 <div class="section" id="model-assessment">
 <h2>Model Assessment<a class="headerlink" href="#model-assessment" title="Permalink to this headline">¶</a></h2>
-<p><img alt="image3" src="https://user-images.githubusercontent.com/43657731/111242010-831c9880-85bb-11eb-932c-cd545e251070.png" /></p>
+<p><img alt="report" src="../../_images/lgbmreport.png" /></p>
 <p>As shown in the classification report after setting the threshold at 0.2, for websites where we identified arrest information (label of 1) , we got 96% recall, 85% precision and 95% accuracy.</p>
 <p>In order to further assess our models, we used metrics such as the ROC curve, the Precision vs. Recall curve, and the Confusion matrix. Since we are dealing with criminal record information, we care more about minimizing our false negatives since they are more harmful if missed (so we care more about high recall than anything else).</p>
 </div>
